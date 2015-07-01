@@ -46,10 +46,57 @@ class MyHandler(webapp2.RequestHandler):
         self.response.out.write('<html><body>%s</body></html>' % greeting)
 ```
 
+### Using an API
+
+Every API is a little bit different, but in general we can follow a process for connecting to them.
+
+1. Read the documentation.
+2. Setup an "API call" - going to get the data
+3. Deciding what to do when you get the data back
+
+Sometimes, APIs are well documented and we can follow the instructions easily. Other times, they're not so well documented and we'll have to play around a bit more. For the most part, the APIs we use will give us back JSON objects that we can parse and get data from which can look like this.
+
+```js
+"students":[
+	{"firstName":"John", "lastName":"Doe"},
+	{"firstName":"Anna", "lastName":"Smith"},
+	{"firstName":"Peter","lastName":"Jones"}
+]
+```
+
+In the example above, the object "students" is an array containing three objects. Each object is a record of a CSSI student (with a first name and a last name).
+
+### Calling the giphy API with `urllib`
+
+This code will display the *raw* data the the API returns. Interesting, but not terribly useful.
+
+```python
+import urllib
+
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        data = urllib.urlopen(
+     "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read()
+        self.response.out.write(data)
+```
+
+### Loading JSON data
+
+To make the JSON data more useful we need to load and parse it using `json.loads()`
+
+```python
+parsed_data = json.loads(urllib.urlopen(      "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read())
+self.response.out.write(parsed_data)
+```
+
+Then we will need to navigate to the data that we want show which in this case might be `parsed_data['data'][0]['images']['original']['url'])`.
 
 ## Conclusion / So What?
 
+API's are the way that web applications talk to each other. They will allow you use and incorporate advanced functionality and leverage existing services in your applications.
 
 ## Hints and Hurdles
 
-+
++ API's are a great way to add additional functionality
++ Make sure you read the documentation for API's, they all work a little differently
++ There are great tools out there to help you work with API's such as [hurl](https://www.hurl.it/), [postman](https://www.getpostman.com/), and [apiary](https://apiary.io/)
