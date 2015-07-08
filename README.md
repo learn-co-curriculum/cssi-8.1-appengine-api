@@ -72,30 +72,36 @@ Sometimes, APIs are well documented and we can follow the instructions easily. O
 
 In the example above, the object "students" is an array containing three objects. Each object is a record of a CSSI student (with a first name and a last name).
 
-### Calling the giphy API with `urllib`
+
+### URLFetch
+Another useful Google API that we will use is [URLFetch](https://cloud.google.com/appengine/docs/python/urlfetch/). URLFetch is a powerful and GAE-friendly way of going to a URL and getting the contents at that url. 
+
+### Calling the giphy API with `urlfetch.fetch()`
 
 This code will display the *raw* data the the API returns. Interesting, but not terribly useful.
 
 ```python
-import urllib
+import json
+from google.appengine.api import urlfetch
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        data = urllib.urlopen(
-     "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read()
+        data = urlfetch.fetch(
+     "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content
         self.response.out.write(data)
 ```
 
 ### Loading JSON data
 
-To make the JSON data more useful we need to load and parse it using `json.loads()`
+To make the JSON data more useful we need to load and parse it using `json.loads()`. This will turn the raw JSON data into a python dictionary.
 
 ```python
-parsed_data = json.loads(urllib.urlopen(      "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read())
+parsed_data = urlfetch.fetch(
+     "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content
 self.response.out.write(parsed_data)
 ```
-
-Then we will need to navigate to the data that we want show which in this case might be `parsed_data['data'][0]['images']['original']['url'])`.
+Once you have used `json.loads()` you can navigate to the data by indexing, just like you would with any nested dictionary.  
+In this case, it would be `parsed_data['data'][0]['images']['original']['url'])`.
 
 ## Conclusion / So What?
 
