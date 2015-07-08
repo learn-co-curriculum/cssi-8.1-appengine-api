@@ -76,6 +76,15 @@ In the example above, the object "students" is an array containing three objects
 ### URLFetch
 Another useful Google API that we will use is [URLFetch](https://cloud.google.com/appengine/docs/python/urlfetch/). URLFetch is a powerful and GAE-friendly way of going to a URL and getting the contents at that url. 
 
+####The difference between urlopen() and fetch()
+When reading documentation or looking at other code examples, you might see the use of the method urllib2.urlopen() to access the data at a certain url. This is a similar function to urlfetch.fetch() but it doesn't offer quite as much power and functionality, which is why we're teaching you URLFetch! These two methods can generally be used interchangeably. 
+
+#### Reading the data at a certain URL
+To open a file stored at a certain URL and then read that data
+* With urlfetch.fetch(), you need to append .content to the end : `urlfetch.fetch("www.myurl.com").content`
+* With urllib2.urlopen(), you need to append .read() to the end : `urllib2.urlopen("www.myurl.com").read()`
+
+
 ### Calling the giphy API with `urlfetch.fetch()`
 
 This code will display the *raw* data the the API returns. Interesting, but not terribly useful.
