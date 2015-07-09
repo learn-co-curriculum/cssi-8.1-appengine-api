@@ -36,7 +36,7 @@ The AppEngine Users module actually connects to Google’s User authentication s
 
 Using this API Library is as simple as importing the `users` module from `google.appengine.api` and using the built in methods that are provided. Here's a very simple example of how that works.
 
-```
+```python
 from google.appengine.api import users
 import webapp2
 class MyHandler(webapp2.RequestHandler):
@@ -89,7 +89,7 @@ To open a file stored at a certain URL and then read that data
 
 This code will display the *raw* data the the API returns. Interesting, but not terribly useful.
 
-```
+```python
 import json
 from google.appengine.api import urlfetch
 
@@ -104,11 +104,12 @@ class MainHandler(webapp2.RequestHandler):
 
 To make the JSON data more useful we need to load and parse it using `json.loads()`. This will turn the raw JSON data into a python dictionary.
 
-```
+```python
 parsed_data = urlfetch.fetch(
      "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content
 self.response.out.write(parsed_data)
 ```
+
 Once you have used `json.loads()` you can navigate to the data by indexing, just like you would with any nested dictionary.  
 In this case, it would be `parsed_data['data'][0]['images']['original']['url'])`.
 
