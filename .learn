@@ -1,0 +1,12 @@
+languages:
+  - python
+  - HTML
+tags:
+  - app engine
+  - cssi
+  - API
+  - giphy
+  - templates
+resources: 0
+type:
+  - reference notes
