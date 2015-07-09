@@ -32,7 +32,7 @@ Sometimes developers will provide you with a class/module/library that makes con
 
 ### App Engine Users API
 
-The AppEngine Users module actually connects to Google’s User authentication service.  However for a developer the setup is very easy and allows you to have Authenticated (signed in and verified) users that you can trust; they’re backed by Google.
+The AppEngine Users module actually connects to Google’s User authentication service.  However for a developer the setup is very easy and allows you to have authenticated (signed in and verified) users that you can trust; they’re backed by Google.
 
 Using this API Library is as simple as importing the `users` module from `google.appengine.api` and using the built in methods that are provided. Here's a very simple example of how that works.
 
@@ -60,7 +60,7 @@ Every API is a little bit different, but in general we can follow a process for 
 2. Setup an "API call" - going to get the data
 3. Deciding what to do when you get the data back
 
-Sometimes, APIs are well documented and we can follow the instructions easily. Other times, they're not so well documented and we'll have to play around a bit more. For the most part, the APIs we use will give us back JSON objects that we can parse and get data from which can look like this.
+Sometimes, APIs are well documented and we can follow the instructions easily. Other times, they're not so well documented and we'll have to play around a bit more. For the most part, the APIs we use will give us back JSON objects that we can parse and get data from. JSON objects can look like this.
 
 ```javascript
 "students":[
