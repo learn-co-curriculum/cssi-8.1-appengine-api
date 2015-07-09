@@ -62,7 +62,7 @@ Every API is a little bit different, but in general we can follow a process for 
 
 Sometimes, APIs are well documented and we can follow the instructions easily. Other times, they're not so well documented and we'll have to play around a bit more. For the most part, the APIs we use will give us back JSON objects that we can parse and get data from which can look like this.
 
-```js
+```javascript
 "students":[
 	{"firstName":"John", "lastName":"Doe"},
 	{"firstName":"Anna", "lastName":"Smith"},
