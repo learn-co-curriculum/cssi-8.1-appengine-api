@@ -105,8 +105,9 @@ class MainHandler(webapp2.RequestHandler):
 To make the JSON data more useful we need to load and parse it using `json.loads()`. This will turn the raw JSON data into a python dictionary.
 
 ```python
-parsed_data = urlfetch.fetch(
+raw_data = urlfetch.fetch(
      "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content
+parsed_data = json.loads(raw_data)
 self.response.out.write(parsed_data)
 ```
 
