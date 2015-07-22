@@ -8,16 +8,16 @@ languages: python, json
 
 ## Objectives
 
-+ Understand how API's connect services on the web
-+ Understand how Client Library's wrap API functionality
-+ Understand how AppEngine provides it’s own API libraries
-+ Use the AppEngine Users API module
++ Understand how APIs connect services on the web
++ Understand how client librarys wrap API functionality
++ Understand how App Engine provides it’s own API libraries
++ Use the App Engine Users API module
 + Connect to any public facing API
 + Access the returned data from an API
 
 ## Motivation / Why Should You Care?
 
-API’s (Application Programming Interfaces) are a major part of the internet and allow amazing things to happen easily. There are TONS of cool ways to connect other applications to extend our app's functionality. Want to include GIFs based on user searches? Show Tweets related to your site? We can do this and much, much more using APIs!
+APIs (Application Programming Interfaces) are a major part of the internet and allow amazing things to happen easily. There are TONS of cool ways to connect other applications to extend our app's functionality. Want to include GIFs based on user searches? Show Tweets related to your site? We can do this and much, much more using APIs!
 
 ## Lesson Plan
 
@@ -26,19 +26,20 @@ API’s (Application Programming Interfaces) are a major part of the internet an
 + API stands for "Application Programming Interface".
 + In a nutshell, an API is a set of instructions that allows developers to change and control existing web applications. It's a way for the developers of existing applications to allow other people to get their data in a controlled way.
 
-### Client Wrapper Libraries for API's
+### Client Wrapper Libraries for APIs
 
 Sometimes developers will provide you with a class/module/library that makes connecting to an API much easier.  They will make sure that the correct language for that API is used and all you have to do is use the (hopefully) simple methods that they provide.  
 
 ### App Engine Users API
 
-The AppEngine Users module actually connects to Google’s User authentication service.  However for a developer the setup is very easy and allows you to have authenticated (signed in and verified) users that you can trust; they’re backed by Google.
+The AppEngine Users module actually connects to Google’s user authentication service.  For a developer the setup is very easy and allows you to have authenticated (signed in and verified) users that you can trust, since they're verified by Google.
 
 Using this API Library is as simple as importing the `users` module from `google.appengine.api` and using the built in methods that are provided. Here's a very simple example of how that works.
 
 ```python
 from google.appengine.api import users
 import webapp2
+
 class MyHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -57,29 +58,32 @@ class MyHandler(webapp2.RequestHandler):
 Every API is a little bit different, but in general we can follow a process for connecting to them.
 
 1. Read the documentation.
-2. Setup an "API call" - going to get the data
-3. Deciding what to do when you get the data back
+2. Set up an "API call" (going to get the data)
+3. Decide what to do when you get the data back
 
 Sometimes, APIs are well documented and we can follow the instructions easily. Other times, they're not so well documented and we'll have to play around a bit more. For the most part, the APIs we use will give us back JSON objects that we can parse and get data from. JSON objects can look like this.
 
 ```javascript
-"students":[
-  {"firstName":"John", "lastName":"Doe"},
-  {"firstName":"Anna", "lastName":"Smith"},
-  {"firstName":"Peter","lastName":"Jones"}
+"students": [
+  {"firstName": "John", "lastName": "Doe"},
+  {"firstName": "Anna", "lastName": "Smith"},
+  {"firstName": "Peter","lastName": "Jones"}
 ]
 ```
 
-In the example above, the object "students" is an array containing three objects. Each object is a record of a CSSI student (with a first name and a last name).
+In the example above, the object `students` is an array containing three objects. Each object is a record of a CSSI student (with a first name and a last name).
 
 
 ### URLFetch
-Another useful Google API that we will use is [URLFetch](https://cloud.google.com/appengine/docs/python/urlfetch/). URLFetch is a powerful and GAE-friendly way of going to a URL and getting the contents at that url. 
 
-####The difference between urlopen() and fetch()
+Another useful Google API that we will use is [URLFetch](https://cloud.google.com/appengine/docs/python/urlfetch/). `URLFetch` is a powerful and App Engine-friendly way of going to a URL and getting the contents at that url. 
+
+#### The difference between urlopen() and fetch()
+
 When reading documentation or looking at other code examples, you might see the use of the method urllib2.urlopen() to access the data at a certain url. This is a similar function to urlfetch.fetch() but it doesn't offer quite as much power and functionality, which is why we're teaching you URLFetch! These two methods can generally be used interchangeably. 
 
 #### Reading the data at a certain URL
+
 To open a file stored at a certain URL and then read that data
 * With urlfetch.fetch(), you need to append .content to the end : `urlfetch.fetch("www.myurl.com").content`
 * With urllib2.urlopen(), you need to append .read() to the end : `urllib2.urlopen("www.myurl.com").read()`
@@ -95,28 +99,30 @@ from google.appengine.api import urlfetch
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        data = urlfetch.fetch(
-     "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content
-        self.response.out.write(data)
+		    url = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=dc6zaTOxFJmzC&limit=10"
+        response = urlfetch.fetch(url)
+        self.response.out.write(response.content)
 ```
 
 ### Loading JSON data
 
-To make the JSON data more useful we need to load and parse it using `json.loads()`. This will turn the raw JSON data into a python dictionary.
+To make the JSON data more useful we need to load and parse it using `json.loads()`. This will turn the raw JSON data into a Python dictionary.
 
 ```python
-raw_data = urlfetch.fetch(
-     "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content
+url = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=dc6zaTOxFJmzC&limit=10"
+response = urlfetch.fetch(url)
+
+raw_data = response.content
 parsed_data = json.loads(raw_data)
 self.response.out.write(parsed_data)
 ```
 
 Once you have used `json.loads()` you can navigate to the data by indexing, just like you would with any nested dictionary.  
-In this case, it would be `parsed_data['data'][0]['images']['original']['url'])`.
+In this case, we can find the URL of a GIF at `parsed_data['data'][0]['images']['original']['url'])`.
 
 ## Conclusion / So What?
 
-API's are the way that web applications talk to each other. They will allow you use and incorporate advanced functionality and leverage existing services in your applications.
+APIs are the way that web applications talk to each other. They will allow you use and incorporate advanced functionality and leverage existing services in your applications.
 
 ## Hints and Hurdles
 
