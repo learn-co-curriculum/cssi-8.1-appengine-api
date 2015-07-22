@@ -4,20 +4,20 @@ level: 3
 languages: python, json
 ---
 
-# API's
+# APIs
 
 ## Objectives
 
-+ Understand how API's connect services on the web
-+ Understand how Client Library's wrap API functionality
-+ Understand how AppEngine provides it’s own API libraries
++ Understand how APIs connect services on the web
++ Understand how Client Libraries wrap API functionality
++ Understand how AppEngine provides its own API libraries
 + Use the AppEngine Users API module
 + Connect to any public facing API
 + Access the returned data from an API
 
 ## Motivation / Why Should You Care?
 
-API’s (Application Programming Interfaces) are a major part of the internet and allow amazing things to happen easily. There are TONS of cool ways to connect other applications to extend our app's functionality. Want to include GIFs based on user searches? Show Tweets related to your site? We can do this and much, much more using APIs!
+APIs (Application Programming Interfaces) are a major part of the internet and allow amazing things to happen easily. There are TONS of cool ways to connect other applications to extend our app's functionality. Want to include GIFs based on user searches? Show Tweets related to your site? We can do this and much, much more using APIs!
 
 ## Lesson Plan
 
@@ -26,7 +26,7 @@ API’s (Application Programming Interfaces) are a major part of the internet an
 + API stands for "Application Programming Interface".
 + In a nutshell, an API is a set of instructions that allows developers to change and control existing web applications. It's a way for the developers of existing applications to allow other people to get their data in a controlled way.
 
-### Client Wrapper Libraries for API's
+### Client Wrapper Libraries for APIs
 
 Sometimes developers will provide you with a class/module/library that makes connecting to an API much easier.  They will make sure that the correct language for that API is used and all you have to do is use the (hopefully) simple methods that they provide.  
 
@@ -116,10 +116,10 @@ In this case, it would be `parsed_data['data'][0]['images']['original']['url'])`
 
 ## Conclusion / So What?
 
-API's are the way that web applications talk to each other. They will allow you use and incorporate advanced functionality and leverage existing services in your applications.
+APIs are the way that web applications talk to each other. They will allow you use and incorporate advanced functionality and leverage existing services in your applications.
 
 ## Hints and Hurdles
 
-+ API's are a great way to add additional functionality
-+ Make sure you read the documentation for API's, they all work a little differently
-+ There are great tools out there to help you work with API's such as [hurl](https://www.hurl.it/), [postman](https://www.getpostman.com/), and [apiary](https://apiary.io/)
++ APIs are a great way to add additional functionality
++ Make sure you read the documentation for APIs, they all work a little differently
++ There are great tools out there to help you work with APIs such as [hurl](https://www.hurl.it/), [postman](https://www.getpostman.com/), and [apiary](https://apiary.io/)
