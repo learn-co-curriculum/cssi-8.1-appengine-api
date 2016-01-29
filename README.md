@@ -120,4 +120,4 @@ APIs are the way that web applications talk to each other. They will allow you u
 + Make sure you read the documentation for APIs, they all work a little differently
 + There are great tools out there to help you work with APIs such as [hurl](https://www.hurl.it/), [postman](https://www.getpostman.com/), and [apiary](https://apiary.io/)
 
-<a href='https://learn.co/lessons/cssi-8.1-appengine-api' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/cssi-8.1-appengine-api' title='APIs'>APIs</a> on Learn.co and start learning to code for free.</p>
